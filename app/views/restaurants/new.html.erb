@@ -1,6 +1,21 @@
 <h1> Wagwan </h1>
 
 <%= form_with scope: :restaurant, url: restaurants_path, local: true do |form| %>
+  <% if @restaurant.errors.any? %>
+    <div id="error">
+      <h2>
+        <%= pluralize(@restaurant.errors.count, "error") %>
+        prevented this restaurant from being saved.
+      </h2>
+
+      <ul>
+        <% @restaurant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
@@ -15,5 +30,6 @@
     <%= form.submit %>
   </p>
 
-  <%= link_to 'Back', restaurants_path %>
 <% end %>
+
+<%= link_to 'Back', restaurants_path %>
