@@ -1,19 +1,23 @@
 class RestaurantsController < ApplicationController
 
   def index
-    # @restaurants = Restaurants.all
+    @restaurants = Restaurant.all
+  end
+
+  def show
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def new
   end
 
   def create
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.save
+    redirect_to @restaurant
   end
 
   def edit
-  end
-
-  def show
   end
 
   def update
@@ -22,4 +26,8 @@ class RestaurantsController < ApplicationController
   def destroy
   end
 
+private
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :description)
+  end
 end
