@@ -5,5 +5,9 @@
   <h2> <%= restaurant.name %> </h2>
   <h2> <%= restaurant.description %> </h2>
   <%= link_to 'Show', restaurant_path(restaurant) %>
+  <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
+  <%= link_to 'Destroy', restaurant_path(restaurant),
+  method: :delete,
+  data: { confirm: 'Are you sure?'} %>
 
 <% end %>
