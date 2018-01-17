@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180117153201) do
-=======
-ActiveRecord::Schema.define(version: 20180117150033) do
->>>>>>> 993aa0d2e8c469152c7cad6a6481ded247b1a481
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
@@ -24,7 +20,6 @@ ActiveRecord::Schema.define(version: 20180117150033) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "reviews", force: :cascade do |t|
     t.text "comment"
     t.integer "rating"
@@ -32,14 +27,14 @@ ActiveRecord::Schema.define(version: 20180117150033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
-=======
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "user_name"
     t.string "password"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> 993aa0d2e8c469152c7cad6a6481ded247b1a481
   end
 
 end
