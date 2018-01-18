@@ -29,12 +29,4 @@ ActiveRecord::Schema.define(version: 20180117153201) do
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "user_name"
-    t.string "password"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
