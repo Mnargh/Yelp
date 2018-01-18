@@ -8,6 +8,11 @@
   <strong>Description:</strong>
   <%= @restaurant.description %>
 </p>
+<p>
+<strong>Average Rating:</strong>
+  <%  sum = @restaurant.reviews.map(&:rating).inject(0, &:+).to_f %>
+  <%= (sum/@restaurant.reviews.map(&:rating).length).round(1) %>
+</p>
 
 <h2>Reviews</h2>
 <% @restaurant.reviews.each do |review| %>
