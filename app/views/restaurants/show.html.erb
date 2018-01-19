@@ -1,32 +1,51 @@
+<center>
+  <div class="card" style="width: 28rem;">
+    <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="Card image cap">
+    <hr>
+    <div class="card-body">
+      <h3 class="card-title">
+       <strong>
+       <%= @restaurant.name %>
+        </strong>
+      </h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+      <p class="card-text">
+        Description:
+        <%= @restaurant.description %>
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>Average Rating:</strong>
+        <%  sum = @restaurant.reviews.map(&:rating).inject(0, &:+).to_f %>
+        <%= (sum/@restaurant.reviews.map(&:rating).length).round(1) %>
+      </li>
+    </ul>
+    <div class="card-body">
+      <%= link_to 'Back', restaurants_path, {class: 'card-link'} %>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant), {class: 'card-link'} %>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @restaurant.description %>
-</p>
-<p>
-<strong>Average Rating:</strong>
-  <%  sum = @restaurant.reviews.map(&:rating).inject(0, &:+).to_f %>
-  <%= (sum/@restaurant.reviews.map(&:rating).length).round(1) %>
-</p>
-
-<h2>Reviews</h2>
-<% @restaurant.reviews.each do |review| %>
-<p>
-  <strong>Rating:</strong>
-<%= review.rating %>
-</p>
-
-<p>
-<strong>Comment:</strong>
-<%= review.comment %>
-</p>
-<% end %>
-
+  <h2>Reviews</h2>
+  <% @restaurant.reviews.each do |review| %>
+  <div class="card text-center">
+    <div class="card-header">
+      <h5 class="card-title"><%= @restaurant.user.email %></h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Comment:</strong>
+        <%= review.comment %>
+      </p>
+    </div>
+    <div class="card-footer text-muted">
+      <strong>Rating:</strong>
+      <%= review.rating %>
+    </div>
+  </div>
+  <% end %>
+</center>
 
 <h2>Add a comment:</h2>
 <%= form_with(model: [ @restaurant, @restaurant.reviews.build ],
@@ -44,5 +63,4 @@ local: true) do |form| %>
   </p>
   <% end %>
 
-<%= link_to 'Back', restaurants_path %>
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+

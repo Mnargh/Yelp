@@ -1,15 +1,34 @@
-<div class="container">
+<center>
   <h1>Restaurants</h1>
   <%= link_to 'New restaurant', new_restaurant_path %>
 
+<div class="row" style="padding-bottom: 3em;">
   <% @restaurants.each do | restaurant | %>
-    <h2> <%= restaurant.name %> </h2>
-    <h2> <%= restaurant.description %> </h2>
-    <%= link_to 'Show', restaurant_path(restaurant) %>
-    <%= link_to 'Edit', edit_restaurant_path(restaurant) %>
-    <%= link_to 'Destroy', restaurant_path(restaurant),
-    method: :delete,
-    data: { confirm: 'Are you sure?'} %>
+
+<div class=col-sm-4>
+  
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="Card image cap">
+    <div class="card-body">
+      <h3 class="card-title"> <%= restaurant.name %> </h3>
+      <p class="card-text"> <%= restaurant.description %> </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Average Rating:</li>
+    </ul>
+    <div class="card-body">
+      <%= link_to 'Show', restaurant_path(restaurant), {class: 'card-link'}  %>
+      <%= link_to 'Edit', edit_restaurant_path(restaurant), {class: 'card-link'}  %>
+      <%= link_to 'Destroy', restaurant_path(restaurant),
+          method: :delete,
+          data: { confirm: 'Are you sure?'} %>
+    </div>
+  </div>
+
+</div>
+  
+    
 
   <% end %>
 </div>
+</center>
